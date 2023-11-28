@@ -9,6 +9,7 @@ import 'package:weather_jojo/presentation/bloc/weather_bloc/weather_state.dart';
 import 'package:weather_jojo/presentation/widgets/daily_forecast_item.dart';
 import 'package:weather_jojo/presentation/widgets/hourly_forecast_item.dart';
 import 'package:weather_jojo/presentation/widgets/main_top_section.dart';
+import 'package:weather_jojo/presentation/widgets/not_found_search.dart';
 
 class WeatherPage extends StatefulWidget {
   const WeatherPage({
@@ -55,9 +56,7 @@ class _WeatherPageState extends State<WeatherPage> {
             );
           }
           if (state is WeatherError) {
-            return Center(
-              child: Text(state.message),
-            );
+            return CityNotFound();
           }
           if (state is WeatherLoaded) {
             return Column(

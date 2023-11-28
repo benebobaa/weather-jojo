@@ -40,6 +40,16 @@ class _SearchPageState extends State<SearchPage> {
             border: InputBorder.none,
           ),
           onFieldSubmitted: (value) {
+            if (value.trim().isEmpty) {
+              showAdaptiveDialog(
+                context: context,
+                builder: (context) => const AlertDialog(
+                  title: Text('Error'),
+                  content: Text('Please enter a city name'),
+                ),
+              );
+              return;
+            }
             context.read<WeatherBloc>().add(OnChangeSearch(name: value.trim()));
             context
                 .read<SearchBloc>()

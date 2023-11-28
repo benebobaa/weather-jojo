@@ -14,6 +14,8 @@ class MediaRes {
       '$_baseLottie/ani_under_construction.json';
   static const aniSplashPage =
       '$_baseLottie/ani_splash_weather.json';
+  static const aniNotFound =
+      '$_baseLottie/ani_not_found.json';
 
   //icons
   static const icBtnList = '$_baseIcons/ic_btn_list.png';
