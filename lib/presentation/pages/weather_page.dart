@@ -8,6 +8,7 @@ import 'package:weather_jojo/presentation/bloc/weather_bloc/weather_event.dart';
 import 'package:weather_jojo/presentation/bloc/weather_bloc/weather_state.dart';
 import 'package:weather_jojo/presentation/widgets/daily_forecast_item.dart';
 import 'package:weather_jojo/presentation/widgets/hourly_forecast_item.dart';
+import 'package:weather_jojo/presentation/widgets/main_top_section.dart';
 
 class WeatherPage extends StatefulWidget {
   const WeatherPage({
@@ -27,7 +28,7 @@ class _WeatherPageState extends State<WeatherPage> {
   @override
   void initState() {
     // TODO: implement initState
-    context.read<WeatherBloc>().add(OnCityByPosition(
+    context.read<WeatherBloc>().add(OnForecastByPosition(
         lat: widget.position.latitude, lon: widget.position.longitude));
     super.initState();
   }
@@ -35,168 +36,98 @@ class _WeatherPageState extends State<WeatherPage> {
   @override
   Widget build(BuildContext context) {
     final screenH = MediaQuery.of(context).size.height;
-    final screenW = MediaQuery.of(context).size.width;
 
     return Scaffold(
       body: BlocConsumer<WeatherBloc, WeatherState>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          return Column(
-            children: [
-              Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.deepPurpleAccent,
-                      Colors.blue,
-                      Colors.lightBlue
-                    ],
-                  ),
-                ),
-                height: screenH * 0.37,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      vertical: screenH * 0.05, horizontal: screenW * 0.05),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'New York',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 40,
-                                fontWeight: FontWeight.w500),
-                          ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.search,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: screenH * 0.02),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '18°C',
-                                  style: TextStyle(
-                                      fontSize: 50,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  'Cooling',
-                                  style: TextStyle(
-                                      fontSize: 30, color: Colors.white),
-                                ),
-                                SizedBox(height: screenH * 0.02),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.arrow_downward,
-                                      color: Colors.white,
-                                    ),
-                                    Text(
-                                      '15°C',
-                                      style: TextStyle(
-                                          fontSize: 20, color: Colors.white),
-                                    ),
-                                    SizedBox(width: screenW * 0.02),
-                                    Icon(
-                                      Icons.arrow_upward,
-                                      color: Colors.white,
-                                    ),
-                                    Text(
-                                      '20°C',
-                                      style: TextStyle(
-                                          fontSize: 20, color: Colors.white),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                          Container(
-                              height: screenH * 0.2,
-                              width: screenW * 0.4,
-                              child: Image.network(
-                                'http://openweathermap.org/img/wn/04d.png',
-                                fit: BoxFit.cover,
-                              )),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
+        listener: (context, state) {
+          if (state is WeatherError) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(state.message),
               ),
-              Expanded(
-                child: Container(
-                  color: Colors.grey.withOpacity(0.08),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
+            );
+          }
+        },
+        builder: (context, state) {
+          if (state is WeatherLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (state is WeatherError) {
+            return const Center(
+              child: Text('Error'),
+            );
+          }
+          if (state is WeatherLoaded) {
+            return Column(
+              children: [
+                MainTopSection(
+                    cityName: state.cityName,
+                    weatherEntity: state.data[state.selectedIndex].first),
+                Expanded(
+                  child: Container(
+                    color: Colors.grey.withOpacity(0.08),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 20),
+                            child: Text(
+                              'DAILY FORECAST',
+                              style: TextStyle(
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.bold),
+                            )),
+                        SizedBox(
+                          height: screenH * 0.19,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: state.data.length,
+                            itemBuilder: (context, index) {
+                              return DailyForecastItem(
+                                data: state.data[index].first,
+                                index: index,
+                                selectedIndex: state.selectedIndex,
+                              );
+                            },
+                          ),
+                        ),
+                        Padding(
                           padding: EdgeInsets.symmetric(
                               horizontal: 10, vertical: 20),
                           child: Text(
-                            'DAILY FORECAST',
+                            'HOURLY FORECAST',
                             style: TextStyle(
                                 color: Colors.blue,
                                 fontWeight: FontWeight.bold),
-                          )),
-                      SizedBox(
-                        height: screenH * 0.15,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 5,
-                          itemBuilder: (context, index) {
-                            return DailyForecastItem();
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                        child: Text(
-                          'HOURLY FORECAST',
-                          style: TextStyle(
-                              color: Colors.blue, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Container(
-                          height: screenH * 0.15,
-                          margin: EdgeInsets.symmetric(horizontal: 10),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12),
                           ),
-                          child: ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 5,
-                            itemBuilder: (context, index) {
-                              return HourlyForecastItem();
-                            },
-                          ))
-                    ],
+                        ),
+                        Container(
+                            height: screenH * 0.15,
+                            margin: EdgeInsets.symmetric(horizontal: 10),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: ListView.builder(
+                              physics: NeverScrollableScrollPhysics(),
+                              scrollDirection: Axis.horizontal,
+                              itemCount: 5,
+                              itemBuilder: (context, index) {
+                                return HourlyForecastItem();
+                              },
+                            ))
+                      ],
+                    ),
                   ),
-                ),
-              )
-            ],
-          );
+                )
+              ],
+            );
+          }
+          return SizedBox.shrink();
         },
       ),
     );

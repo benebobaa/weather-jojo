@@ -1,5 +1,5 @@
-
 import 'package:equatable/equatable.dart';
+import 'package:weather_jojo/domain/entities/forecast_entity.dart';
 import 'package:weather_jojo/domain/entities/weather_entity.dart';
 
 abstract class WeatherState extends Equatable {
@@ -14,12 +14,14 @@ class WeatherEmpty extends WeatherState {}
 class WeatherLoading extends WeatherState {}
 
 class WeatherLoaded extends WeatherState {
-  final WeatherEntity result;
+  final String cityName;
+  final List<List<ForecastWeatherEntity>> data;
+  final int selectedIndex;
 
-  const WeatherLoaded({required this.result});
+  const WeatherLoaded({required this.cityName, required this.data, required this.selectedIndex});
 
   @override
-  List<Object> get props => [result];
+  List<Object> get props => [cityName, data, selectedIndex];
 }
 
 class WeatherError extends WeatherState {

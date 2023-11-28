@@ -2,6 +2,7 @@
 
 import 'package:dartz/dartz.dart';
 import 'package:weather_jojo/core/error/failure.dart';
+import 'package:weather_jojo/domain/entities/forecast_entity.dart';
 import 'package:weather_jojo/domain/entities/weather_entity.dart';
 import 'package:weather_jojo/domain/repositories/weather_repository.dart';
 
@@ -16,5 +17,13 @@ class WeatherUsecase{
 
   Future<Either<Failure,WeatherEntity>> getCurrentWeatherByName(String name) async {
     return await _repository.getCurrentWeatherByName(name);
+  }
+
+  Future<Either<Failure, ForecastEntity>> getForecastByPosition(double lat, double lon) async {
+    return await _repository.getForecastByPosition(lat, lon);
+  }
+
+  Future<Either<Failure, ForecastEntity>> getForecastByName(String name) async {
+    return await _repository.getForecastByName(name);
   }
 }

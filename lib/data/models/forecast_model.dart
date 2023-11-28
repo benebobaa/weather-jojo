@@ -1,0 +1,91 @@
+import 'package:weather_jojo/domain/entities/forecast_entity.dart';
+
+class ForecastModel extends ForecastEntity {
+  const ForecastModel({
+    required String cityName,
+    required List<ForecastWeatherModel> list,
+  }) : super(
+cityName: cityName,
+          list: list,
+        );
+
+  factory ForecastModel.fromJson(Map<String, dynamic> json) {
+    return ForecastModel(
+      cityName: json['city']['name'],
+      list: (json['list'] as List)
+          .map((e) => ForecastWeatherModel.fromJson(e))
+          .toList(),
+    );
+  }
+
+  ForecastEntity toEntity() => ForecastEntity(
+        cityName: cityName,
+        list: list,
+      );
+}
+
+class ForecastWeatherModel extends ForecastWeatherEntity {
+  const ForecastWeatherModel({
+    
+    required String main,
+    required String iconCode,
+    required String dateTxt,
+    required double temperature,
+    required double tempMin,
+    required double tempMax,
+    required int pressure,
+    required int humidity,
+  }) : super(
+          main: main,
+          iconCode: iconCode,
+          dateTxt: dateTxt,
+          temperature: temperature,
+          tempMin: tempMin,
+          tempMax: tempMax,
+          pressure: pressure,
+          humidity: humidity,
+        );
+
+  factory ForecastWeatherModel.fromJson(Map<String, dynamic> json) {
+    return ForecastWeatherModel(
+      main: json['weather'][0]['main'],
+      iconCode: json['weather'][0]['icon'],
+      dateTxt: json['dt_txt'],
+      temperature: json['main']['temp'],
+      tempMin: json['main']['temp_min'],
+      tempMax: json['main']['temp_max'],
+      pressure: json['main']['pressure'],
+      humidity: json['main']['humidity'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'dt_txt': dateTxt,
+      'weather': [
+        {
+          'main': main,
+          'icon': iconCode,
+        }
+      ],
+      'main': {
+        'temp': temperature,
+        'temp_min': tempMin,
+        'temp_max': tempMax,
+        'pressure': pressure,
+        'humidity': humidity,
+      },
+    };
+  }
+
+  ForecastWeatherEntity toEntity() => ForecastWeatherEntity(
+        main: main,
+        iconCode: iconCode,
+        dateTxt: dateTxt,
+        temperature: temperature,
+        tempMin: tempMin,
+        tempMax: tempMax,
+        pressure: pressure,
+        humidity: humidity,
+      );
+}

@@ -4,6 +4,7 @@ import 'package:weather_jojo/core/services/router.dart';
 import 'package:weather_jojo/injection_container.dart';
 import 'package:weather_jojo/presentation/bloc/splash_bloc/splash_bloc.dart';
 import 'package:weather_jojo/presentation/bloc/weather_bloc/weather_bloc.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ServiceLocator.setup();
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => locator<SplashBloc>()),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           appBarTheme: const AppBarTheme(backgroundColor: Colors.white),

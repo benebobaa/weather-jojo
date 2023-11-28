@@ -24,22 +24,39 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: BlocListener<SplashBloc, SplashState>(
-          listener: (context, state) {
-            if (state is SplashLoaded) {
-              Navigator.pushNamed(context, WeatherPage.routeName,
-                  arguments: state.result);
-            }
-          },
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Lottie.asset(MediaRes.aniSplashPage),
-              Text('Jojo Weather')
-            ],
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          stops: [0.1, 0.5, 0.7, 0.9],
+          colors: [
+            Colors.deepPurple,
+            Colors.blue,
+            Colors.lightBlue,
+            Colors.white,
+          ],
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Center(
+          child: BlocListener<SplashBloc, SplashState>(
+            listener: (context, state) {
+              if (state is SplashLoaded) {
+                Navigator.pushNamed(context, WeatherPage.routeName,
+                    arguments: state.result);
+              }
+            },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Lottie.asset(MediaRes.aniSplashPage),
+                const Text('Jojo Weather',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400))
+              ],
+            ),
           ),
         ),
       ),
