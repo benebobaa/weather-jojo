@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:weather_jojo/core/constants/media_res.dart';
 import 'package:weather_jojo/presentation/bloc/splash_bloc/splash_bloc.dart';
 import 'package:weather_jojo/presentation/bloc/splash_bloc/splash_event.dart';
@@ -43,6 +44,26 @@ class _SplashPageState extends State<SplashPage> {
         body: Center(
           child: BlocListener<SplashBloc, SplashState>(
             listener: (context, state) {
+              if (state is SplashLocationDenied) {
+                showAdaptiveDialog<void>(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (BuildContext context) => AlertDialog(
+                    title: const Text('Permission Denied'),
+                    content: const Text('Allow access to the location service'),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: const Text('Cancel'),
+                      ),
+                      TextButton(
+                        onPressed: () => openAppSettings(),
+                        child: const Text('Settings'),
+                      ),
+                    ],
+                  ),
+                );
+              }
               if (state is SplashLoaded) {
                 Navigator.pushNamedAndRemoveUntil(
                     context,

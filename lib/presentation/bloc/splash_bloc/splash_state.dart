@@ -23,3 +23,5 @@ class SplashLoaded extends SplashState {
   List<Object> get props => [result];
 }
 
+class SplashLocationDenied extends SplashState {}
+

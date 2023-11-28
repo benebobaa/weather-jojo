@@ -45,6 +45,7 @@ dependencies:
   lottie: ^2.7.0
   shared_preferences: ^2.2.2
   intl: ^0.18.1
+  permission_handler: ^10.2.0
 
 dev_dependencies:
   bloc_test: ^9.1.4

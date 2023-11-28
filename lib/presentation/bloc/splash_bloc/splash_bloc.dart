@@ -8,8 +8,12 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     on<OnGetLocation>((event, emit) async {
       emit(SplashLoading());
       await Future.delayed(Duration(seconds: 2));
-      final result = await LocationService.getCurrentLocation();
-      emit(SplashLoaded(result: result));
+      try {
+        final result = await LocationService.getCurrentLocation();
+        emit(SplashLoaded(result: result));
+      } on Exception {
+        emit(SplashLocationDenied());
+      }
     });
   }
 }
