@@ -21,12 +21,11 @@ class OnForecastByPosition extends WeatherEvent {
   final double lat;
   final double lon;
 
-  const OnForecastByPosition({ required this.lat, required this.lon});
+  const OnForecastByPosition({required this.lat, required this.lon});
 
   @override
   List<Object> get props => [lat, lon];
 }
-
 
 class OnChangeSelectDay extends WeatherEvent {
   final int index;
@@ -36,3 +35,13 @@ class OnChangeSelectDay extends WeatherEvent {
   @override
   List<Object> get props => [index];
 }
+
+class OnChangeSearch extends WeatherEvent {
+  final String name;
+
+  const OnChangeSearch({required this.name});
+
+  @override
+  List<Object> get props => [name];
+}
+

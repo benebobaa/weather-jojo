@@ -55,8 +55,8 @@ class _WeatherPageState extends State<WeatherPage> {
             );
           }
           if (state is WeatherError) {
-            return const Center(
-              child: Text('Error'),
+            return Center(
+              child: Text(state.message),
             );
           }
           if (state is WeatherLoaded) {
@@ -115,9 +115,11 @@ class _WeatherPageState extends State<WeatherPage> {
                             child: ListView.builder(
                               physics: NeverScrollableScrollPhysics(),
                               scrollDirection: Axis.horizontal,
-                              itemCount: 5,
+                              itemCount: state.data[state.selectedIndex].length,
                               itemBuilder: (context, index) {
-                                return HourlyForecastItem();
+                                return HourlyForecastItem(
+                                    forecast: state.data[state.selectedIndex]
+                                        [index]);
                               },
                             ))
                       ],

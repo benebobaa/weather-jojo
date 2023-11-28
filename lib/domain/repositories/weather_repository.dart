@@ -10,4 +10,9 @@ abstract class WeatherRepository {
   Future<Either<Failure, ForecastEntity>> getForecastByPosition(
       double lat, double lon);
   Future<Either<Failure, ForecastEntity>> getForecastByName(String name);
+
+  //local
+
+  Future<Either<Failure,void>> cacheRecentLocations(String key, List<String> locations);
+  Future<Either<Failure,List<String>>> getRecentLocations(String key);
 }

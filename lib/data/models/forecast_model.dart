@@ -5,7 +5,7 @@ class ForecastModel extends ForecastEntity {
     required String cityName,
     required List<ForecastWeatherModel> list,
   }) : super(
-cityName: cityName,
+          cityName: cityName,
           list: list,
         );
 
@@ -26,7 +26,6 @@ cityName: cityName,
 
 class ForecastWeatherModel extends ForecastWeatherEntity {
   const ForecastWeatherModel({
-    
     required String main,
     required String iconCode,
     required String dateTxt,
@@ -51,9 +50,15 @@ class ForecastWeatherModel extends ForecastWeatherEntity {
       main: json['weather'][0]['main'],
       iconCode: json['weather'][0]['icon'],
       dateTxt: json['dt_txt'],
-      temperature: json['main']['temp'],
-      tempMin: json['main']['temp_min'],
-      tempMax: json['main']['temp_max'],
+      temperature: json['main']['temp'].runtimeType == int
+          ? (json['main']['temp'] as int).toDouble()
+          : json['main']['temp'],
+      tempMin: json['main']['temp_min'].runtimeType == int
+          ? (json['main']['temp_min'] as int).toDouble()
+          : json['main']['temp_min'],
+      tempMax: json['main']['temp_max'].runtimeType == int
+          ? (json['main']['temp_max'] as int).toDouble()
+          : json['main']['temp_max'],
       pressure: json['main']['pressure'],
       humidity: json['main']['humidity'],
     );

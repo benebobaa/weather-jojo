@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_jojo/core/extension/get_dayname_date.dart';
 
 import 'package:weather_jojo/domain/entities/forecast_entity.dart';
 import 'package:weather_jojo/presentation/bloc/weather_bloc/weather_bloc.dart';
@@ -40,7 +41,7 @@ class DailyForecastItem extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Text('Mon', style: TextStyle(color: Colors.grey)),
+            Text(data.dateTxt.dayName, style: TextStyle(color: Colors.grey)),
             Container(
               height: screenH * 0.08,
               width: screenW * 0.17,

@@ -32,3 +32,15 @@ class WeatherError extends WeatherState {
   @override
   List<Object> get props => [message];
 }
+
+
+class LocationCacheError extends WeatherState {
+  final String message;
+
+  const LocationCacheError({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}
+
+

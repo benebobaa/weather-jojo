@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_jojo/core/services/router.dart';
 import 'package:weather_jojo/injection_container.dart';
+import 'package:weather_jojo/presentation/bloc/search_bloc/search_bloc.dart';
 import 'package:weather_jojo/presentation/bloc/splash_bloc/splash_bloc.dart';
 import 'package:weather_jojo/presentation/bloc/weather_bloc/weather_bloc.dart';
 
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => locator<WeatherBloc>()),
         BlocProvider(create: (context) => locator<SplashBloc>()),
+        BlocProvider(create: (context) => locator<SearchBloc  >()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

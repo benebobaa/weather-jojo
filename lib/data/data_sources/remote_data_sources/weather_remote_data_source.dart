@@ -55,6 +55,9 @@ class WeatherRemoteDataSourceImpl extends WeatherRemoteDataSource {
     if (response.statusCode == 200) {
       return ForecastModel.fromJson(jsonDecode(response.body));
     }
+    if (response.statusCode == 404) {
+      throw BadRequestException();
+    }
     throw ServerException();
   }
 

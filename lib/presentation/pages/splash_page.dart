@@ -44,8 +44,11 @@ class _SplashPageState extends State<SplashPage> {
           child: BlocListener<SplashBloc, SplashState>(
             listener: (context, state) {
               if (state is SplashLoaded) {
-                Navigator.pushNamed(context, WeatherPage.routeName,
-                    arguments: state.result);
+                Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    WeatherPage.routeName,
+                    arguments: state.result,
+                    (route) => false);
               }
             },
             child: Column(

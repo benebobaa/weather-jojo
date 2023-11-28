@@ -1,8 +1,16 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:weather_jojo/core/extension/parse_clock_hour.dart';
+
+import 'package:weather_jojo/domain/entities/forecast_entity.dart';
 
 class HourlyForecastItem extends StatelessWidget {
-  const HourlyForecastItem({super.key});
+  const HourlyForecastItem({
+    Key? key,
+    required this.forecast,
+  }) : super(key: key);
 
+  final ForecastWeatherEntity forecast;
   @override
   Widget build(BuildContext context) {
     final screenH = MediaQuery.of(context).size.height;
@@ -18,16 +26,17 @@ class HourlyForecastItem extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Text('2 PM', style: TextStyle(color: Colors.grey, fontSize: 12)),
+          Text('${forecast.dateTxt.clockHour}', style: TextStyle(color: Colors.grey, fontSize: 12)),
           Container(
             height: screenH * 0.06,
             width: screenW * 0.12,
             child: Image.network(
-              'http://openweathermap.org/img/wn/10d@2x.png',
+              'http://openweathermap.org/img/wn/${forecast.iconCode}@2x.png',
               fit: BoxFit.cover,
             ),
           ),
-          Text('36°', style: TextStyle(fontSize: 12)),
+          Text('${forecast.temperature.toInt()}°',
+              style: TextStyle(fontSize: 12)),
         ],
       ),
     );
