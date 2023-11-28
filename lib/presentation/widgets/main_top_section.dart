@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_jojo/domain/entities/forecast_entity.dart';
 
-import 'package:weather_jojo/domain/entities/weather_entity.dart';
 import 'package:weather_jojo/presentation/pages/search_page.dart';
 
 class MainTopSection extends StatelessWidget {
@@ -45,7 +44,7 @@ class MainTopSection extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushNamed(context, SearchPage.routeName);
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.search,
                     color: Colors.white,
                   ),
@@ -55,63 +54,61 @@ class MainTopSection extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 24,
-                        child: Text(
-                          '${weatherEntity.temperature.toInt()}°C',
-                          style: TextStyle(
-                            height: 0.77,
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                          textAlign: TextAlign.center,
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 24,
+                      child: Text(
+                        '${weatherEntity.temperature.toInt()}°C',
+                        style: const TextStyle(
+                          height: 0.77,
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
+                        textAlign: TextAlign.center,
                       ),
-                      // Text(
-                      //   '18°C',
-                      //   style: TextStyle(
-                      //       fontSize: 20 * screenH / screenW,
-                      //       color: Colors.white,
-                      //       fontWeight: FontWeight.bold),
-                      // ),
-                      Text(
-                        weatherEntity.main,
-                        style: TextStyle(
-                            fontSize: 20 * screenH / screenW,
-                            color: Colors.white),
-                      ),
-                      SizedBox(height: screenH * 0.02),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.arrow_downward,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            '${weatherEntity.tempMin.toInt()}',
-                            style: TextStyle(fontSize: 20, color: Colors.white),
-                          ),
-                          SizedBox(width: screenW * 0.02),
-                          Icon(
-                            Icons.arrow_upward,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            '${weatherEntity.tempMax.toInt()}',
-                            style: TextStyle(fontSize: 20, color: Colors.white),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
+                    ),
+                    // Text(
+                    //   '18°C',
+                    //   style: TextStyle(
+                    //       fontSize: 20 * screenH / screenW,
+                    //       color: Colors.white,
+                    //       fontWeight: FontWeight.bold),
+                    // ),
+                    Text(
+                      weatherEntity.main,
+                      style: TextStyle(
+                          fontSize: 20 * screenH / screenW,
+                          color: Colors.white),
+                    ),
+                    SizedBox(height: screenH * 0.02),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.arrow_downward,
+                          color: Colors.white,
+                        ),
+                        Text(
+                          '${weatherEntity.tempMin.toInt()}',
+                          style: const TextStyle(fontSize: 20, color: Colors.white),
+                        ),
+                        SizedBox(width: screenW * 0.02),
+                        const Icon(
+                          Icons.arrow_upward,
+                          color: Colors.white,
+                        ),
+                        Text(
+                          '${weatherEntity.tempMax.toInt()}',
+                          style: const TextStyle(fontSize: 20, color: Colors.white),
+                        ),
+                      ],
+                    )
+                  ],
                 ),
-                Container(
+                SizedBox(
                   height: screenH * 0.25,
                   width: screenW * 0.45,
                   child: Image.network(

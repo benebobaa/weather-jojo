@@ -41,8 +41,8 @@ class DailyForecastItem extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Text(data.dateTxt.dayName, style: TextStyle(color: Colors.grey)),
-            Container(
+            Text(data.dateTxt.dayName, style: const TextStyle(color: Colors.grey)),
+            SizedBox(
               height: screenH * 0.08,
               width: screenW * 0.17,
               child: Image.network(

@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_jojo/core/constants/key.dart';
 import 'package:weather_jojo/domain/entities/forecast_entity.dart';
 import 'package:weather_jojo/domain/usecases/weather_usecase.dart';
 import 'package:weather_jojo/presentation/bloc/weather_bloc/weather_event.dart';
@@ -17,7 +16,6 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       final result = await _usecase.getForecastByPosition(event.lat, event.lon);
       result.fold((failure) => null, (data) {
         resultData = _groupByDate(data);
-        print(resultData);
         cityName = data.cityName;
         emit(WeatherLoaded(
             cityName: data.cityName,

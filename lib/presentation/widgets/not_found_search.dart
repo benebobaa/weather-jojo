@@ -12,13 +12,13 @@ class CityNotFound extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text('city not found',
+        const Text('city not found',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400)),
         Lottie.asset(MediaRes.aniNotFound),
         OutlinedButton(
             style: OutlinedButton.styleFrom(
-              primary: Colors.blue,
-              side: BorderSide(color: Colors.blueAccent),
+              foregroundColor: Colors.blue,
+              side: const BorderSide(color: Colors.blueAccent),
             ),
             onPressed: () {
               Navigator.pushNamed(context, SearchPage.routeName);

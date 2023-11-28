@@ -56,7 +56,7 @@ class _WeatherPageState extends State<WeatherPage> {
             );
           }
           if (state is WeatherError) {
-            return CityNotFound();
+            return const CityNotFound();
           }
           if (state is WeatherLoaded) {
             return Column(
@@ -71,7 +71,7 @@ class _WeatherPageState extends State<WeatherPage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Padding(
+                        const Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 20),
                             child: Text(
@@ -94,7 +94,7 @@ class _WeatherPageState extends State<WeatherPage> {
                             },
                           ),
                         ),
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.symmetric(
                               horizontal: 10, vertical: 20),
                           child: Text(
@@ -106,13 +106,13 @@ class _WeatherPageState extends State<WeatherPage> {
                         ),
                         Container(
                             height: screenH * 0.15,
-                            margin: EdgeInsets.symmetric(horizontal: 10),
+                            margin: const EdgeInsets.symmetric(horizontal: 10),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: ListView.builder(
-                              physics: NeverScrollableScrollPhysics(),
+                              physics: const NeverScrollableScrollPhysics(),
                               scrollDirection: Axis.horizontal,
                               itemCount: state.data[state.selectedIndex].length,
                               itemBuilder: (context, index) {
@@ -128,7 +128,7 @@ class _WeatherPageState extends State<WeatherPage> {
               ],
             );
           }
-          return SizedBox.shrink();
+          return const SizedBox.shrink();
         },
       ),
     );

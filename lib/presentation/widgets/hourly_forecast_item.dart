@@ -26,8 +26,8 @@ class HourlyForecastItem extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Text('${forecast.dateTxt.clockHour}', style: TextStyle(color: Colors.grey, fontSize: 12)),
-          Container(
+          Text(forecast.dateTxt.clockHour, style: const TextStyle(color: Colors.grey, fontSize: 12)),
+          SizedBox(
             height: screenH * 0.06,
             width: screenW * 0.12,
             child: Image.network(
@@ -36,7 +36,7 @@ class HourlyForecastItem extends StatelessWidget {
             ),
           ),
           Text('${forecast.temperature.toInt()}°',
-              style: TextStyle(fontSize: 12)),
+              style: const TextStyle(fontSize: 12)),
         ],
       ),
     );

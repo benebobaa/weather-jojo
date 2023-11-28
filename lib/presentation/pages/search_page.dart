@@ -5,7 +5,6 @@ import 'package:weather_jojo/presentation/bloc/search_bloc/search_event.dart';
 import 'package:weather_jojo/presentation/bloc/search_bloc/search_state.dart';
 import 'package:weather_jojo/presentation/bloc/weather_bloc/weather_bloc.dart';
 import 'package:weather_jojo/presentation/bloc/weather_bloc/weather_event.dart';
-import 'package:weather_jojo/presentation/bloc/weather_bloc/weather_state.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -19,7 +18,7 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   @override
   void initState() {
-    context.read<SearchBloc>().add(OnInitCacheLocations());
+    context.read<SearchBloc>().add(const OnInitCacheLocations());
     super.initState();
   }
 
@@ -31,10 +30,10 @@ class _SearchPageState extends State<SearchPage> {
         elevation: 0,
         scrolledUnderElevation: 0,
         backgroundColor: Colors.transparent,
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
         title: TextFormField(
-          style: TextStyle(color: Colors.white),
-          decoration: InputDecoration(
+          style: const TextStyle(color: Colors.white),
+          decoration: const InputDecoration(
             hintText: 'Search',
             hintStyle: TextStyle(color: Colors.white),
             border: InputBorder.none,
@@ -63,7 +62,7 @@ class _SearchPageState extends State<SearchPage> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
+          const Padding(
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
               child: Text(
                 'Recent Locations',
@@ -80,7 +79,7 @@ class _SearchPageState extends State<SearchPage> {
                     itemCount: state.locations.length,
                     itemBuilder: (context, index) {
                       return ListTile(
-                        leading: Icon(
+                        leading: const Icon(
                           Icons.location_on,
                           color: Colors.white,
                         ),
@@ -91,10 +90,10 @@ class _SearchPageState extends State<SearchPage> {
                         },
                         title: Text(
                           state.locations[index],
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                         ),
                         trailing: IconButton(
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.delete,
                             color: Colors.white,
                           ),
