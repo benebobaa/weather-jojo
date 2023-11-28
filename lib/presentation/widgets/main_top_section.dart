@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:weather_jojo/core/constants/media_res.dart';
 import 'package:weather_jojo/domain/entities/forecast_entity.dart';
 
 import 'package:weather_jojo/presentation/pages/search_page.dart';
@@ -93,7 +94,8 @@ class MainTopSection extends StatelessWidget {
                         ),
                         Text(
                           '${weatherEntity.tempMin.toInt()}',
-                          style: const TextStyle(fontSize: 20, color: Colors.white),
+                          style: const TextStyle(
+                              fontSize: 20, color: Colors.white),
                         ),
                         SizedBox(width: screenW * 0.02),
                         const Icon(
@@ -102,20 +104,25 @@ class MainTopSection extends StatelessWidget {
                         ),
                         Text(
                           '${weatherEntity.tempMax.toInt()}',
-                          style: const TextStyle(fontSize: 20, color: Colors.white),
+                          style: const TextStyle(
+                              fontSize: 20, color: Colors.white),
                         ),
                       ],
                     )
                   ],
                 ),
                 SizedBox(
-                  height: screenH * 0.25,
-                  width: screenW * 0.45,
-                  child: Image.network(
-                    'http://openweathermap.org/img/wn/${weatherEntity.iconCode}@4x.png',
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                    height: screenH * 0.25,
+                    width: screenW * 0.45,
+                    child: FadeInImage.assetNetwork(
+                        placeholder: MediaRes.placeholderImagePng,
+                        image:
+                            'http://openweathermap.org/img/wn/${weatherEntity.iconCode}@4x.png')
+                    // Image.network(
+                    //   'http://openweathermap.org/img/wn/${weatherEntity.iconCode}@4x.png',
+                    //   fit: BoxFit.cover,
+                    // ),
+                    ),
               ],
             )
           ],

@@ -12,4 +12,8 @@ abstract class WeatherRepository {
 
   Future<Either<Failure,void>> cacheRecentLocations(String key, List<String> locations);
   Future<Either<Failure,List<String>>> getRecentLocations(String key);
+
+  Future<Either<Failure,void>> cacheForecastData(String key, List<ForecastWeatherEntity> data);
+  Future<Either<Failure,List<ForecastWeatherEntity>>> getCacheForecastData(String key);
+  Future<Either<Failure,String>> getCacheCityName();
 }

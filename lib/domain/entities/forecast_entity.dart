@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:weather_jojo/data/models/forecast_model.dart';
 
 class ForecastEntity extends Equatable {
   final String cityName;
@@ -8,6 +9,8 @@ class ForecastEntity extends Equatable {
     required this.cityName,
     required this.list,
   });
+
+  
 
   @override
   List<Object?> get props => [cityName,list];
@@ -34,6 +37,19 @@ class ForecastWeatherEntity extends Equatable {
   final int pressure;
   final int humidity;
 
+  
+
+  ForecastWeatherModel toModel() => ForecastWeatherModel(
+        main: main,
+        iconCode: iconCode,
+        dateTxt: dateTxt,
+        temperature: temperature,
+        tempMin: tempMin,
+        tempMax: tempMax,
+        pressure: pressure,
+        humidity: humidity,
+      );
+
   @override
   List<Object?> get props => [
         main,
@@ -45,4 +61,24 @@ class ForecastWeatherEntity extends Equatable {
         pressure,
         humidity,
       ];
+
+
+  //     Map<String, dynamic> toJson() {
+  //   return {
+  //     'dt_txt': dateTxt,
+  //     'weather': [
+  //       {
+  //         'main': main,
+  //         'icon': iconCode,
+  //       }
+  //     ],
+  //     'main': {
+  //       'temp': temperature,
+  //       'temp_min': tempMin,
+  //       'temp_max': tempMax,
+  //       'pressure': pressure,
+  //       'humidity': humidity,
+  //     },
+  //   };
+  // }
 }

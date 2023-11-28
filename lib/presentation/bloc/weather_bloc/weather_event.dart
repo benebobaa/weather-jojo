@@ -44,3 +44,16 @@ class OnChangeSearch extends WeatherEvent {
   List<Object> get props => [name];
 }
 
+
+class OnCacheForecast extends WeatherEvent {
+
+}
+
+class OnGetCacheForecast extends WeatherEvent {
+  final String key;
+
+  const OnGetCacheForecast({required this.key});
+
+  @override
+  List<Object> get props => [key];
+}

@@ -48,6 +48,9 @@ class _WeatherPageState extends State<WeatherPage> {
               ),
             );
           }
+          if (state is WeatherLoaded) {
+            context.read<WeatherBloc>().add(OnCacheForecast());
+          }
         },
         builder: (context, state) {
           if (state is WeatherLoading) {
@@ -55,7 +58,7 @@ class _WeatherPageState extends State<WeatherPage> {
               child: CircularProgressIndicator(),
             );
           }
-          if (state is WeatherError) {
+          if (state is WeatherNotFound || state is WeatherError) {
             return const CityNotFound();
           }
           if (state is WeatherLoaded) {

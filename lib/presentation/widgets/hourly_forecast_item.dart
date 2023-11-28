@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:weather_jojo/core/constants/constants.dart';
+import 'package:weather_jojo/core/constants/media_res.dart';
 import 'package:weather_jojo/core/extension/parse_clock_hour.dart';
 
 import 'package:weather_jojo/domain/entities/forecast_entity.dart';
@@ -26,14 +28,19 @@ class HourlyForecastItem extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Text(forecast.dateTxt.clockHour, style: const TextStyle(color: Colors.grey, fontSize: 12)),
+          Text(forecast.dateTxt.clockHour,
+              style: const TextStyle(color: Colors.grey, fontSize: 12)),
           SizedBox(
             height: screenH * 0.06,
             width: screenW * 0.12,
-            child: Image.network(
-              'http://openweathermap.org/img/wn/${forecast.iconCode}@2x.png',
-              fit: BoxFit.cover,
-            ),
+            child: FadeInImage.assetNetwork(
+                placeholder: MediaRes.placeholderImageGif,
+                image: Urls.weatherIcon(forecast.iconCode)),
+
+            // Image.network(
+            //   'http://openweathermap.org/img/wn/${forecast.iconCode}@2x.png',
+            //   fit: BoxFit.cover,
+            // ),
           ),
           Text('${forecast.temperature.toInt()}°',
               style: const TextStyle(fontSize: 12)),

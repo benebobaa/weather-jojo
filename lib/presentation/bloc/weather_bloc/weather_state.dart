@@ -42,4 +42,20 @@ class LocationCacheError extends WeatherState {
   List<Object> get props => [message];
 }
 
+class WeatherNotFound extends WeatherState {
+  final String message;
 
+  const WeatherNotFound({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}
+
+class CityCached extends WeatherState {
+  final String cityName;
+
+  const CityCached({required this.cityName});
+
+  @override
+  List<Object> get props => [cityName];
+}

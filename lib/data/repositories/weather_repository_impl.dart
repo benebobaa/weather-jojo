@@ -16,7 +16,6 @@ class WeatherRepositoryImpl extends WeatherRepository {
     required this.localDataSource,
   });
 
-
   @override
   Future<Either<Failure, ForecastEntity>> getForecastByName(String name) async {
     try {
@@ -47,26 +46,65 @@ class WeatherRepositoryImpl extends WeatherRepository {
           ConnectionFailure('Timeout, failed to connect to the network'));
     }
   }
-  
+
   @override
-  Future<Either<Failure, void>> cacheRecentLocations(String key, List<String> locations) async{
+  Future<Either<Failure, void>> cacheRecentLocations(
+      String key, List<String> locations) async {
     try {
-      await localDataSource.cacheRecentLocations(key, locations); 
+      await localDataSource.cacheRecentLocations(key, locations);
       return const Right(null);
     } on LocalDatabaseException {
-      return const Left(DatabaseFailure('An error occurred while caching data'));
+      return const Left(
+          DatabaseFailure('An error occurred while caching data'));
     }
   }
-  
+
   @override
-  Future<Either<Failure, List<String>>> getRecentLocations(String key) async{
+  Future<Either<Failure, List<String>>> getRecentLocations(String key) async {
     try {
       final result = await localDataSource.getRecentLocations(key);
       return Right(result);
     } on LocalDatabaseException {
-      return const Left(DatabaseFailure('An error occurred while getting data'));
+      return const Left(
+          DatabaseFailure('An error occurred while getting data'));
     }
   }
 
+  @override
+  Future<Either<Failure, void>> cacheForecastData(
+      String key, List<ForecastWeatherEntity> data) async {
+    try {
+      await localDataSource.cacheForecastData(
+          key, data.map((e) => e.toModel()).toList());
+      return const Right(null);
+    } on LocalDatabaseException {
+      return const Left(
+          DatabaseFailure('An error occurred while caching data'));
+    }
+  }
 
+  @override
+  Future<Either<Failure, String>> getCacheCityName() async {
+    try {
+      final result = await localDataSource.getCacheCityName();
+      return Right(result);
+    } on LocalDatabaseException {
+      return const Left(
+          DatabaseFailure('An error occurred while getting data'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<ForecastWeatherEntity>>> getCacheForecastData(
+      String key) async {
+    try {
+      final result = await localDataSource.getCacheForecastData(key);
+      List<ForecastWeatherEntity> resultEntity =
+          result.map((e) => e.toEntity()).toList();
+      return Right(resultEntity);
+    } on LocalDatabaseException {
+      return const Left(
+          DatabaseFailure('An error occurred while getting data'));
+    }
+  }
 }

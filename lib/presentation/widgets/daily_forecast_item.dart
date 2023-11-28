@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_jojo/core/constants/constants.dart';
+import 'package:weather_jojo/core/constants/media_res.dart';
 import 'package:weather_jojo/core/extension/get_dayname_date.dart';
 
 import 'package:weather_jojo/domain/entities/forecast_entity.dart';
@@ -41,14 +43,19 @@ class DailyForecastItem extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Text(data.dateTxt.dayName, style: const TextStyle(color: Colors.grey)),
+            Text(data.dateTxt.dayName,
+                style: const TextStyle(color: Colors.grey)),
             SizedBox(
               height: screenH * 0.08,
               width: screenW * 0.17,
-              child: Image.network(
-                'http://openweathermap.org/img/wn/${data.iconCode}@2x.png',
-                fit: BoxFit.cover,
-              ),
+              child: FadeInImage.assetNetwork(
+                  placeholder: MediaRes.placeholderImageGif,
+                  image: Urls.weatherIcon(data.iconCode)),
+
+              // Image.network(
+              //   'http://openweathermap.org/img/wn/${data.iconCode}@2x.png',
+              //   fit: BoxFit.cover,
+              // ),
             ),
             Text(data.main),
           ],

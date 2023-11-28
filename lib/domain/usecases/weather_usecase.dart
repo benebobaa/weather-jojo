@@ -25,4 +25,16 @@ class WeatherUsecase{
   Future<Either<Failure,List<String>>> getRecentLocations(String key) async {
     return await _repository.getRecentLocations(key);
   }
+
+  Future<Either<Failure,void>> cacheForecastData(String key, List<ForecastWeatherEntity> data) async {
+    return await _repository.cacheForecastData(key, data);
+  }
+
+  Future<Either<Failure,List<ForecastWeatherEntity>>> getCacheForecastData(String key) async {
+    return await _repository.getCacheForecastData(key);
+  }
+
+  Future<Either<Failure,String>> getCacheCityName() async {
+    return await _repository.getCacheCityName();
+  }
 }

@@ -18,6 +18,15 @@ class ForecastModel extends ForecastEntity {
     );
   }
 
+  // Map<String, dynamic> toJson() {
+  //   return {
+  //     'city': {
+  //       'name': cityName,
+  //     },
+  //     'list': list.map((e) => e.toJson()).toList(),
+  //   };
+  // }
+
   ForecastEntity toEntity() => ForecastEntity(
         cityName: cityName,
         list: list,
