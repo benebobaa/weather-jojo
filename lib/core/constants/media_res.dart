@@ -12,6 +12,8 @@ class MediaRes {
   //lottie
   static const aniUnderConstruction =
       '$_baseLottie/ani_under_construction.json';
+  static const aniSplashPage =
+      '$_baseLottie/ani_splash_weather.json';
 
   //icons
   static const icBtnList = '$_baseIcons/ic_btn_list.png';

@@ -1,4 +1,3 @@
-import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 
 class LocationService {

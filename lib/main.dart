@@ -4,9 +4,6 @@ import 'package:weather_jojo/core/services/router.dart';
 import 'package:weather_jojo/injection_container.dart';
 import 'package:weather_jojo/presentation/bloc/splash_bloc/splash_bloc.dart';
 import 'package:weather_jojo/presentation/bloc/weather_bloc/weather_bloc.dart';
-import 'package:weather_jojo/presentation/pages/splash_page.dart';
-import 'package:weather_jojo/presentation/pages/weather_page.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ServiceLocator.setup();

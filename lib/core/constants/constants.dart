@@ -8,4 +8,10 @@ class Urls {
 
   static String currentWeatherByPosition(double lat, double lon) =>
       '$baseUrl/weather?lat=$lat&lon=$lon&appid=$apiKey';
+
+  static String currentForecastByPosition(double lat, double lon) =>
+      '$baseUrl/forecast?lat=$lat&lon=$lon&appid={API key}';
+
+  static String currentForecastByName(String cityName) =>
+      '$baseUrl/forecast?q=$cityName&appid=$apiKey';
 }

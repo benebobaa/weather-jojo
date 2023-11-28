@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:weather_jojo/core/pages/under_construction_page.dart';
 import 'package:weather_jojo/presentation/pages/splash_page.dart';
 import 'package:weather_jojo/presentation/pages/weather_page.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
+  final args = settings.arguments;
   switch (settings.name) {
-    // case SplashPage.routeName:
-    //   return _pageBuilder((_) => const SplashPage(), settings: settings);
+    case SplashPage.routeName:
+      return _pageBuilder((_) => const SplashPage(), settings: settings);
     //weather
     case WeatherPage.routeName:
-      return _pageBuilder((_) => const WeatherPage(), settings: settings);
+      return _pageBuilder((_) => WeatherPage(position: args as Position),
+          settings: settings);
 
     default:
       return _pageBuilder(
