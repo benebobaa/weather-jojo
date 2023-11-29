@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:weather_jojo/core/constants/media_res.dart';
@@ -53,7 +54,7 @@ class _SplashPageState extends State<SplashPage> {
                     content: const Text('Allow access to the location service'),
                     actions: [
                       TextButton(
-                        onPressed: () => Navigator.of(context).pop(),
+                        onPressed: () => SystemNavigator.pop(),
                         child: const Text('Cancel'),
                       ),
                       TextButton(
