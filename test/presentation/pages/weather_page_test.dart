@@ -1,4 +1,4 @@
-import 'dart:math';
+import 'dart:io';
 
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +21,7 @@ void main() {
 
   setUp(() {
     mockWeatherBloc = MockWeatherBloc();
+    HttpOverrides.global = null;
   });
 
   Widget makeTestAbleWidget(Widget body) {

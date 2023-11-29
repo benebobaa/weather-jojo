@@ -27,7 +27,7 @@ var testForecastModel = const ForecastModel(
 );
 
 const testCityName = 'Jakarta';
-const testResultDataUsecase = ForecastEntity(
+const testForecastEntity = ForecastEntity(
   cityName: 'Jakarta',
   list: [
     ForecastWeatherEntity(
@@ -108,3 +108,45 @@ var testPosition = Position(
   floor: null,
   isMocked: false,
 );
+
+const testListForecastEntity = [
+  ForecastWeatherEntity(
+      main: 'Rain',
+      iconCode: '10d',
+      dateTxt: '2023-11-29 09:00:00',
+      temperature: 32.52,
+      tempMin: 31.73,
+      tempMax: 32.52,
+      pressure: 1006,
+      humidity: 67),
+  ForecastWeatherEntity(
+      main: 'Rain',
+      iconCode: '10n',
+      dateTxt: '2023-11-29 12:00:00',
+      temperature: 30.96,
+      tempMin: 29.98,
+      tempMax: 30.96,
+      pressure: 1007,
+      humidity: 67),
+];
+
+const testListForecastModel = [
+  ForecastWeatherModel(
+      main: 'Rain',
+      iconCode: '10d',
+      dateTxt: '2023-11-29 09:00:00',
+      temperature: 32.52,
+      tempMin: 31.73,
+      tempMax: 32.52,
+      pressure: 1006,
+      humidity: 67),
+  ForecastWeatherModel(
+      main: 'Rain',
+      iconCode: '10n',
+      dateTxt: '2023-11-29 12:00:00',
+      temperature: 30.96,
+      tempMin: 29.98,
+      tempMax: 30.96,
+      pressure: 1007,
+      humidity: 67),
+];

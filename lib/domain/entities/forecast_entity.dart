@@ -35,6 +35,17 @@ class ForecastWeatherEntity extends Equatable {
   final int pressure;
   final int humidity;
 
+  ForecastWeatherEntity toEntity() => ForecastWeatherEntity(
+        main: main,
+        iconCode: iconCode,
+        dateTxt: dateTxt,
+        temperature: temperature,
+        tempMin: tempMin,
+        tempMax: tempMax,
+        pressure: pressure,
+        humidity: humidity,
+      );
+
   ForecastWeatherModel toModel() => ForecastWeatherModel(
         main: main,
         iconCode: iconCode,

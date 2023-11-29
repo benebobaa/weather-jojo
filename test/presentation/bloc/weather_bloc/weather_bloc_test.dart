@@ -27,7 +27,7 @@ void main() {
     'emits [WeatherLoading, WeatherLoaded] when OnForecastByPosition is added.',
     build: () {
       when(mockWeatherUsecase.getForecastByPosition(0, 0))
-          .thenAnswer((_) async => const Right(testResultDataUsecase));
+          .thenAnswer((_) async => const Right(testForecastEntity));
       return weatherBloc;
     },
     act: (bloc) => bloc.add(const OnForecastByPosition(lat: 0, lon: 0)),

@@ -29,7 +29,7 @@ class ForecastModel extends ForecastEntity {
 
   ForecastEntity toEntity() => ForecastEntity(
         cityName: cityName,
-        list: list,
+        list: list.map((e) => e.toEntity()).toList(),
       );
 }
 
@@ -72,16 +72,4 @@ class ForecastWeatherModel extends ForecastWeatherEntity {
       humidity: json['main']['humidity'],
     );
   }
-
-
-  ForecastWeatherEntity toEntity() => ForecastWeatherEntity(
-        main: main,
-        iconCode: iconCode,
-        dateTxt: dateTxt,
-        temperature: temperature,
-        tempMin: tempMin,
-        tempMax: tempMax,
-        pressure: pressure,
-        humidity: humidity,
-      );
 }
