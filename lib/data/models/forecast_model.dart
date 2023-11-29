@@ -73,24 +73,6 @@ class ForecastWeatherModel extends ForecastWeatherEntity {
     );
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'dt_txt': dateTxt,
-      'weather': [
-        {
-          'main': main,
-          'icon': iconCode,
-        }
-      ],
-      'main': {
-        'temp': temperature,
-        'temp_min': tempMin,
-        'temp_max': tempMax,
-        'pressure': pressure,
-        'humidity': humidity,
-      },
-    };
-  }
 
   ForecastWeatherEntity toEntity() => ForecastWeatherEntity(
         main: main,

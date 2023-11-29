@@ -4,15 +4,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weather_jojo/core/constants/key.dart';
 import 'package:weather_jojo/core/error/exception.dart';
 import 'package:weather_jojo/data/models/forecast_model.dart';
-import 'package:weather_jojo/domain/entities/forecast_entity.dart';
 
 abstract class WeatherLocalDataSource {
   Future<void> cacheRecentLocations(String key, List<String> locations);
   Future<List<String>> getRecentLocations(String key);
-  Future<void> cacheForecastData(
-      String key, List<ForecastWeatherModel> data);
-  Future<List<ForecastWeatherModel>> getCacheForecastData(
-      String key);
+  Future<void> cacheForecastData(String key, List<ForecastWeatherModel> data);
+  Future<List<ForecastWeatherModel>> getCacheForecastData(String key);
   Future<String> getCacheCityName();
 }
 
@@ -32,17 +29,16 @@ class WeatherLocalDataSourceImpl extends WeatherLocalDataSource {
   }
 
   @override
-  Future<void> cacheRecentLocations(String key, List<String> locations) {
+  Future<void> cacheRecentLocations(String key, List<String> locations) async {
     try {
-      return prefs.setStringList(key, locations);
+      await prefs.setStringList(key, locations);
     } catch (e) {
       throw LocalDatabaseException();
     }
   }
 
   @override
-  Future<void> cacheForecastData(
-      String key, List<ForecastWeatherModel> data) {
+  Future<void> cacheForecastData(String key, List<ForecastWeatherModel> data) {
     try {
       List<String> forecastList =
           data.map((e) => jsonEncode(e.toJson())).toList();
@@ -52,19 +48,19 @@ class WeatherLocalDataSourceImpl extends WeatherLocalDataSource {
       throw LocalDatabaseException();
     }
   }
-  
+
   @override
-  Future<List<ForecastWeatherModel>> getCacheForecastData(String key)async {
+  Future<List<ForecastWeatherModel>> getCacheForecastData(String key) async {
     try {
       List<String> forecastList = prefs.getStringList(key) ?? [];
       return forecastList
           .map((e) => ForecastWeatherModel.fromJson(jsonDecode(e)))
-          .toList(); 
+          .toList();
     } catch (e) {
       throw LocalDatabaseException();
     }
   }
-  
+
   @override
   Future<String> getCacheCityName() {
     try {
