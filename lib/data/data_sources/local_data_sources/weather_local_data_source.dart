@@ -51,14 +51,13 @@ class WeatherLocalDataSourceImpl extends WeatherLocalDataSource {
 
   @override
   Future<List<ForecastWeatherModel>> getCacheForecastData(String key) async {
-    try {
-      List<String> forecastList = prefs.getStringList(key) ?? [];
+    List<String> forecastList = prefs.getStringList(key) ?? [];
+    if (forecastList.isNotEmpty) {
       return forecastList
           .map((e) => ForecastWeatherModel.fromJson(jsonDecode(e)))
           .toList();
-    } catch (e) {
-      throw LocalDatabaseException();
     }
+    throw LocalDatabaseException();
   }
 
   @override

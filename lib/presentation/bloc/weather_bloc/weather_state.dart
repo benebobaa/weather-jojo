@@ -17,7 +17,8 @@ class WeatherLoaded extends WeatherState {
   final List<List<ForecastWeatherEntity>> data;
   final int selectedIndex;
 
-  const WeatherLoaded({required this.cityName, required this.data, required this.selectedIndex});
+  const WeatherLoaded(
+      {required this.cityName, required this.data, this.selectedIndex = 0});
 
   @override
   List<Object> get props => [cityName, data, selectedIndex];
@@ -31,7 +32,6 @@ class WeatherError extends WeatherState {
   @override
   List<Object> get props => [message];
 }
-
 
 class LocationCacheError extends WeatherState {
   final String message;

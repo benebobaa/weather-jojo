@@ -4,15 +4,16 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i6;
-import 'dart:convert' as _i13;
-import 'dart:typed_data' as _i14;
+import 'dart:convert' as _i14;
+import 'dart:typed_data' as _i15;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:http/http.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i11;
-import 'package:shared_preferences/shared_preferences.dart' as _i15;
+import 'package:shared_preferences/shared_preferences.dart' as _i16;
 import 'package:weather_jojo/core/error/failure.dart' as _i7;
+import 'package:weather_jojo/core/services/locator.dart' as _i13;
 import 'package:weather_jojo/data/data_sources/local_data_sources/weather_local_data_source.dart'
     as _i10;
 import 'package:weather_jojo/data/data_sources/remote_data_sources/weather_remote_data_source.dart'
@@ -533,6 +534,15 @@ class MockWeatherUsecase extends _i1.Mock implements _i12.WeatherUsecase {
       ) as _i6.Future<_i2.Either<_i7.Failure, String>>);
 }
 
+/// A class which mocks [LocationService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockLocationService extends _i1.Mock implements _i13.LocationService {
+  MockLocationService() {
+    _i1.throwOnMissingStub(this);
+  }
+}
+
 /// A class which mocks [Client].
 ///
 /// See the documentation for Mockito's code generation for more information.
@@ -602,7 +612,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i13.Encoding? encoding,
+    _i14.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -646,7 +656,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i13.Encoding? encoding,
+    _i14.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -690,7 +700,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i13.Encoding? encoding,
+    _i14.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -734,7 +744,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i13.Encoding? encoding,
+    _i14.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -804,7 +814,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
       ) as _i6.Future<String>);
 
   @override
-  _i6.Future<_i14.Uint8List> readBytes(
+  _i6.Future<_i15.Uint8List> readBytes(
     Uri? url, {
     Map<String, String>? headers,
   }) =>
@@ -814,10 +824,10 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
           [url],
           {#headers: headers},
         ),
-        returnValue: _i6.Future<_i14.Uint8List>.value(_i14.Uint8List(0)),
+        returnValue: _i6.Future<_i15.Uint8List>.value(_i15.Uint8List(0)),
         returnValueForMissingStub:
-            _i6.Future<_i14.Uint8List>.value(_i14.Uint8List(0)),
-      ) as _i6.Future<_i14.Uint8List>);
+            _i6.Future<_i15.Uint8List>.value(_i15.Uint8List(0)),
+      ) as _i6.Future<_i15.Uint8List>);
 
   @override
   _i6.Future<_i4.StreamedResponse> send(_i4.BaseRequest? request) =>
@@ -857,7 +867,7 @@ class MockHttpClient extends _i1.Mock implements _i4.Client {
 /// A class which mocks [SharedPreferences].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSharedPreferences extends _i1.Mock implements _i15.SharedPreferences {
+class MockSharedPreferences extends _i1.Mock implements _i16.SharedPreferences {
   @override
   Set<String> getKeys() => (super.noSuchMethod(
         Invocation.method(
