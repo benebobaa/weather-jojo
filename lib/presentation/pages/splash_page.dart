@@ -79,7 +79,8 @@ class _SplashPageState extends State<SplashPage> {
               children: [
                 Lottie.asset(MediaRes.aniSplashPage),
                 const Text('Jojo Weather',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400))
+                    style:
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.w400))
               ],
             ),
           ),

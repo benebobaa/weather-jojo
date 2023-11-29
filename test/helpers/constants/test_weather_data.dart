@@ -150,3 +150,9 @@ const testListForecastModel = [
       pressure: 1007,
       humidity: 67),
 ];
+
+const testRecentLocations = [
+  'Jakarta',
+  'Bandung',
+  'Surabaya',
+];

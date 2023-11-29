@@ -1,20 +1,17 @@
 import 'dart:io';
 
-import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:weather_jojo/presentation/bloc/weather_bloc/weather_bloc.dart';
-import 'package:weather_jojo/presentation/bloc/weather_bloc/weather_event.dart';
 import 'package:weather_jojo/presentation/bloc/weather_bloc/weather_state.dart';
 import 'package:weather_jojo/presentation/pages/weather_page.dart';
+import 'package:weather_jojo/presentation/widgets/main_top_section.dart';
 import 'package:weather_jojo/presentation/widgets/not_found_search.dart';
 
+import '../../helpers/bloc_mocks.dart';
 import '../../helpers/constants/test_weather_data.dart';
-
-class MockWeatherBloc extends MockBloc<WeatherEvent, WeatherState>
-    implements WeatherBloc {}
 
 void main() {
   late MockWeatherBloc mockWeatherBloc;
@@ -25,7 +22,7 @@ void main() {
   });
 
   Widget makeTestAbleWidget(Widget body) {
-    return BlocProvider(
+    return BlocProvider<WeatherBloc>(
       create: (context) => mockWeatherBloc,
       child: MaterialApp(
         home: body,
@@ -47,5 +44,36 @@ void main() {
 
     //assert
     expect(find.byType(CityNotFound), findsOneWidget);
+  });
+  testWidgets(
+      'should show [CircularProgresIndicator] widget when state is [WeatherLoading]',
+      (widgetTester) async {
+    //arrange
+    when(() => mockWeatherBloc.state).thenReturn(WeatherLoading());
+
+    //act
+    await widgetTester.pumpWidget(makeTestAbleWidget(WeatherPage(
+      position: testPosition,
+    )));
+
+    //assert
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+  });
+
+  testWidgets(
+      'should show [MainTopSection] widget when state is [WeatherLoaded]',
+      (widgetTester) async {
+    //arrange
+    when(() => mockWeatherBloc.state).thenReturn(WeatherLoaded(
+        cityName: testCityName, data: testLoadedData, selectedIndex: 0));
+
+    //act
+    await widgetTester.pumpWidget(makeTestAbleWidget(WeatherPage(
+      position: testPosition,
+    )));
+    await widgetTester.pumpAndSettle();
+
+    //assert
+    expect(find.byType(MainTopSection), findsOneWidget);
   });
 }

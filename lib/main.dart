@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => locator<WeatherBloc>()),
         BlocProvider(create: (context) => locator<SplashBloc>()),
-        BlocProvider(create: (context) => locator<SearchBloc  >()),
+        BlocProvider(create: (context) => locator<SearchBloc>()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
