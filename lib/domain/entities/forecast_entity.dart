@@ -10,10 +10,8 @@ class ForecastEntity extends Equatable {
     required this.list,
   });
 
-  
-
   @override
-  List<Object?> get props => [cityName,list];
+  List<Object?> get props => [cityName, list];
 }
 
 class ForecastWeatherEntity extends Equatable {
@@ -36,8 +34,6 @@ class ForecastWeatherEntity extends Equatable {
   final double tempMax;
   final int pressure;
   final int humidity;
-
-  
 
   ForecastWeatherModel toModel() => ForecastWeatherModel(
         main: main,
@@ -62,23 +58,22 @@ class ForecastWeatherEntity extends Equatable {
         humidity,
       ];
 
-
-  //     Map<String, dynamic> toJson() {
-  //   return {
-  //     'dt_txt': dateTxt,
-  //     'weather': [
-  //       {
-  //         'main': main,
-  //         'icon': iconCode,
-  //       }
-  //     ],
-  //     'main': {
-  //       'temp': temperature,
-  //       'temp_min': tempMin,
-  //       'temp_max': tempMax,
-  //       'pressure': pressure,
-  //       'humidity': humidity,
-  //     },
-  //   };
-  // }
+  Map<String, dynamic> toJson() {
+    return {
+      'dt_txt': dateTxt,
+      'weather': [
+        {
+          'main': main,
+          'icon': iconCode,
+        }
+      ],
+      'main': {
+        'temp': temperature,
+        'temp_min': tempMin,
+        'temp_max': tempMax,
+        'pressure': pressure,
+        'humidity': humidity,
+      },
+    };
+  }
 }
