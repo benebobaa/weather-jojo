@@ -14,7 +14,6 @@ extension ParseClockHour on String {
       }
       return '${dateTime.hour}';
     } catch (e) {
-      print('Error parsing date: $e');
       return 'error'; // Return a default value or handle the error accordingly
     }
   }

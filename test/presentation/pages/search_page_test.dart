@@ -1,4 +1,3 @@
-import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -7,8 +6,6 @@ import 'package:weather_jojo/presentation/bloc/search_bloc/search_bloc.dart';
 import 'package:weather_jojo/presentation/bloc/search_bloc/search_event.dart';
 import 'package:weather_jojo/presentation/bloc/search_bloc/search_state.dart';
 import 'package:weather_jojo/presentation/bloc/weather_bloc/weather_bloc.dart';
-import 'package:weather_jojo/presentation/bloc/weather_bloc/weather_event.dart';
-import 'package:weather_jojo/presentation/bloc/weather_bloc/weather_state.dart';
 import 'package:weather_jojo/presentation/pages/search_page.dart';
 
 import '../../helpers/bloc_mocks.dart';

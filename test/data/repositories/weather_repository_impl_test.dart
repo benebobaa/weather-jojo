@@ -70,7 +70,7 @@ void main() {
     //arrange
     when(mockWeatherLocalDataSource.cacheForecastData(
             testCityName, testListForecastModel))
-        .thenAnswer((_) async => null);
+        .thenAnswer((_) async {});
 
     //act
     final result = await weatherRepositoryImpl.cacheForecastData(

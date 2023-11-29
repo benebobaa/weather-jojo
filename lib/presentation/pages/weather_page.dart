@@ -28,7 +28,6 @@ class WeatherPage extends StatefulWidget {
 class _WeatherPageState extends State<WeatherPage> {
   @override
   void initState() {
-    // TODO: implement initState
     context.read<WeatherBloc>().add(OnForecastByPosition(
         lat: widget.position.latitude, lon: widget.position.longitude));
     super.initState();

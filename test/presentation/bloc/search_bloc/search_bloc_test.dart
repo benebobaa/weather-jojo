@@ -25,7 +25,7 @@ void main() {
             .thenAnswer((_) async => const Right(testRecentLocations));
         return searchBloc;
       },
-      act: (bloc) => bloc.add(OnInitCacheLocations()),
+      act: (bloc) => bloc.add(const OnInitCacheLocations()),
       expect: () => <SearchState>[
             const RecentSearchLoaded(locations: testRecentLocations),
           ]);

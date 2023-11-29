@@ -35,7 +35,7 @@ void main() {
       (widgetTester) async {
     //arrange
     when(() => mockWeatherBloc.state)
-        .thenReturn(WeatherError(message: 'City not found'));
+        .thenReturn(const WeatherError(message: 'City not found'));
 
     //act
     await widgetTester.pumpWidget(makeTestAbleWidget(WeatherPage(

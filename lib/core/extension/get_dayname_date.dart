@@ -7,7 +7,6 @@ extension ParseDateToDayName on String {
       final String formattedDay = DateFormat('EEE').format(dateTime);
       return formattedDay;
     } catch (e) {
-      print('Error parsing date: $e');
       return 'Error'; // Return a default value or handle the error accordingly
     }
   }
